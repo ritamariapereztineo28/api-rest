@@ -1,0 +1,13 @@
+{
+    "prettier.useFlowParser": true,
+    "prettier.javascriptEnable": [
+
+        "javascript",
+        "javascriptreact"
+    ],
+    "prettier.graphqlEnable": [
+
+        "graphql"
+    ],
+    "prettier.trailingComma": "all"
+}
