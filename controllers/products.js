@@ -1,7 +1,14 @@
 "use strict";
 const Product = require("../models/index");
-
+// app.get('/allow-cors', function(request, response) {
+//   response.set('Access-Control-Allow-Origin', '*');
+//   response.sendFile(__dirname + '/message.json');
+// });
 function getProducts(req, res) {
+  // fetch('https://cors-demo.glitch.me/allow-cors', {mode:'cors'})
+
+  // res.sendFile(__dirname + '/message.json');
+  
   Product.find({}, (err, products) => {
     if (err)
       return res.status(500).send({ message: `Ha ocurrido un error: ${err}` });

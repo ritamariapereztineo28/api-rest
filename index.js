@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const app = express();
-
+const cors = require('cors')
 //port
 const port = process.env.PORT || 3000;
 
@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 
 //routes
 app.use(require("./routes/routes"));
-
+app.use(cors());
 mongoose.connect("mongodb://localhost:27017/shop", (err, res) => {
   if (err) {
     console.log(`Error:${err}`);
