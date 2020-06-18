@@ -1,35 +1,17 @@
-const express = require('express');
+const express = require("express");
+
 const routes = express.Router();
 
-const Product = require('../models/index')
+const productsCtrl = require("../controllers/products");
+const usersCtrl = require("../controllers/users");
 
-routes.get('/api/products', (req, res, next) => {
-  res.send(200, {products: []});
-  next();
-});
+routes.get("/api/products", productsCtrl.getProducts);
+routes.get("/api/product/:productId", productsCtrl.getProduct);
+routes.post("/api/product", productsCtrl.postProducts);
+routes.put("/api/product/:productId", productsCtrl.putProduct);
+routes.delete("/api/product/:productId", productsCtrl.deleteProduct);
 
-routes.get('/api/products/:productId', (req, res, next) => {});
-
-routes.post('/api/products', (req, res, next) => {
-  console.log('POST /api/product')
-  console.log(req.body)
-  
-  let product = new Product()
-  product.name = req.body.name
-  product.price = req.body.price
-  product.year = req.body.year
-  product.description = req.body.description
-
-  product.save((err, ProductSchema)=>{
-     if (err){
-         res.send(500).send({message: `Algo anda mal: ${err}`})
-     }
-    res.status(200).send({product: ProductSchema})
-  })
-});
-
-routes.get('*', (req, res) => {
-    res.status(404).send({message: 'Ruta no encontrada !'});
-});
+routes.post("/api/user", usersCtrl.postUsers);
+routes.get("/api/user", usersCtrl.getUsers);
 
 module.exports = routes;
